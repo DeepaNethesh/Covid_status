@@ -12,6 +12,9 @@ const getCovidCityData= async (city) => {
         return data;
         
         }  
+        function myFunction() {
+            document.getElementById("nConfirmed").reset();
+          }
 const createHTML1 = (name, value) => `
         <div class='card container bg-info ' >
         
@@ -90,7 +93,7 @@ const createHTML1 = (name, value) => `
 //                 </div>
 //             </div>
 //         </div>               
-//         `
+//         
 const createHTML2 = (country, value) => `
     <div class='card container bg-info ' >
             
@@ -100,6 +103,10 @@ const createHTML2 = (country, value) => `
     </div>
                   
     `
+    function capitalizeFirstLetter(place) {
+        return place.charAt(0).toUpperCase() + place.slice(1);
+      }
+    //   console.log(capitalizeFirstLetter('india'))
 const button1 = document.querySelector('#newConfirmed');
 const button2 = document.querySelector('#nConfirmed');
 const covid = document.querySelector('#covid')
@@ -114,7 +121,11 @@ const button6 = document.querySelector('#nRecovered');
 const button8 = document.querySelector('#totConfirmed');
 const button10 = document.querySelector('#totDeaths');
 const button12 = document.querySelector('#totRecovered');
-
+const countryName1 = document.querySelector('#country2');
+const countryName2 = document.querySelector('#country3');
+const countryName3 = document.querySelector('#country4');
+const countryName4 = document.querySelector('#country5');
+const countryName5 = document.querySelector('#country6');
 
 button1.addEventListener('click', (event) => {
             event.preventDefault();
@@ -197,7 +208,7 @@ button2.addEventListener('click', (event) => {
         .then(data => {
           
           // get the data we need for our html from the response
-        const country = city;
+        const country = capitalizeFirstLetter(city);
         let value;
         let names = [];
         const countries = data.Countries
@@ -215,22 +226,25 @@ button2.addEventListener('click', (event) => {
             }
          
         console.log(value)
+       
         const cardHtml7 = createHTML2(country, value);
       
           // render!
         covid.innerHTML = cardHtml7;
+       
     })
+    countryName.value = ''
 })
 
 button4.addEventListener('click', (event) => {
    
-    const city = countryName.value;
+    const city = countryName1.value;
         
     getCovidCityData(city)
         .then(data => {
           
           // get the data we need for our html from the response
-        const country = city;
+        const country = capitalizeFirstLetter(city);
         let value;
         let names = [];
         const countries = data.Countries
@@ -253,17 +267,19 @@ button4.addEventListener('click', (event) => {
           // render!
         covid.innerHTML = cardHtml8;
     })
+    countryName1.value = ''
 })
 
 button6.addEventListener('click', (event) => {
    
-    const city = countryName.value;
+    const city = countryName2.value;
         
     getCovidCityData(city)
         .then(data => {
           
           // get the data we need for our html from the response
-        const country = city;
+        const country = capitalizeFirstLetter(city);
+       
         let value;
         let names = [];
         const countries = data.Countries
@@ -273,11 +289,13 @@ button6.addEventListener('click', (event) => {
                result = data.Countries[i].Country
                names.push(result)
             }
-           console.log(names)       
+        
+           console.log(names)
+                 
             for(let j=0; j<names.length; j++) {
                 if(names[j] === country) {
                     value =  data.Countries[j].NewRecovered
-                }
+                } 
             }
          
         console.log(value)
@@ -286,16 +304,17 @@ button6.addEventListener('click', (event) => {
           // render!
         covid.innerHTML = cardHtml9;
     })
+    countryName2.value = ''
 })
 button8.addEventListener('click', (event) => {
     
-    const city = countryName.value;
+    const city = countryName3.value;
         
     getCovidCityData(city)
         .then(data => {
           
           // get the data we need for our html from the response
-        const country = city;
+        const country = capitalizeFirstLetter(city);
         let value;
         let names = [];
         const countries = data.Countries
@@ -318,17 +337,18 @@ button8.addEventListener('click', (event) => {
           // render!
         covid.innerHTML = cardHtml10;
     })
+    countryName3.value = ''
 })
 
 button10.addEventListener('click', (event) => {
     
-    const city = countryName.value;
+    const city = countryName4.value;
         
     getCovidCityData(city)
         .then(data => {
           
           // get the data we need for our html from the response
-        const country = city;
+        const country = capitalizeFirstLetter(city);
         let value;
         let names = [];
         const countries = data.Countries
@@ -351,16 +371,17 @@ button10.addEventListener('click', (event) => {
           // render!
         covid.innerHTML = cardHtml11;
     })
+    countryName4.value = ''
 })
 button12.addEventListener('click', (event) => {
   
-    const city = countryName.value;
+    const city = countryName5.value;
         
     getCovidCityData(city)
         .then(data => {
           
           // get the data we need for our html from the response
-        const country = city;
+        const country = capitalizeFirstLetter(city);
         let value;
         let names = [];
         const countries = data.Countries
@@ -383,4 +404,5 @@ button12.addEventListener('click', (event) => {
           // render!
         covid.innerHTML = cardHtml12;
     })
+    countryName5.value = ''
 })
